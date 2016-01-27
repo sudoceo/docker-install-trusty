@@ -5,6 +5,11 @@
 # Info: https://docs.docker.com/engine/installation/ubuntulinux/
 # DESC: This is a Docker setup script for Ubuntu 14.04 LTS
 
+sudo apt-get update && sudo apt-get dist-upgrade -yes
+sudo apt-get install build-essentials -yes
+
+
+
 ############### Pre-Reqs ########
 echo "Add docker key to apt"
 echo "====================="
