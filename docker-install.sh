@@ -1,20 +1,12 @@
 #!/bin/bash
 
-echo -e ">>>>>>>>>> adding GIT ppa ... \n"
-
-sudo add-apt-repository -y ppa:git-core/ppa
-
-echo -e ">>>>>>>>>> OK, updating ... \n"
+echo -e ">>>>>>>>>> updating ... \n"
 
 apt-get update
 
 echo -e ">>>>>>>>>> OK, upgrading ... \n"
 
 apt-get upgrade -y
-
-echo -e ">>>>>>>>>> OK, installing GIT ... \n"
-
-apt-get install git -y
 
 echo -e ">>>>>>>>>> install build-essentials ... \n"
 
