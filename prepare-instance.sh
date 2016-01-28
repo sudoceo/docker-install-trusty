@@ -11,7 +11,8 @@ hostnamectl set-hostname "$1"
 
 echo "127.0.0.1 $1" >> /etc/hosts
 
-service     hostname restart
-service     networking restart
 
 echo ">>>>>> hostname changed to : $1"
+echo "rebooting ..."
+
+reboot
