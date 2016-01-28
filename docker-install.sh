@@ -5,19 +5,15 @@
 # Info: https://docs.docker.com/engine/installation/ubuntulinux/
 # DESC: This is a Docker setup script for Ubuntu 14.04 LTS
 
-sudo apt-get update && sudo apt-get dist-upgrade -yes
+sudo apt-get update
+
+echo "--- upgrading ------------------------------------------------------"
+sudo apt-get upgrade -y
+echo "--- install build-essentials ------------------------------------------------------"
 sudo apt-get install build-essentials -yes
-
-
-
-############### Pre-Reqs ########
-echo "Add docker key to apt"
-echo "====================="
+echo "--- add Docker key to apt ------------------------------------------------------"
 sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-
-###### Create and Clean  ########
-echo "Update docker.list"
-echo "=================="
+echo "--- update docker.list ------------------------------------------------------"
 
 if [ -e /etc/apt/sources.list.d/docker.list ]
 then
