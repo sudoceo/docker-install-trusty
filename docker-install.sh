@@ -5,17 +5,23 @@
 # Info: https://docs.docker.com/engine/installation/ubuntulinux/
 # DESC: This is a Docker setup script for Ubuntu 14.04 LTS
 
-sudo apt-get update
+apt-get update
 
-echo "--- upgrading ------------------------------------------------------"
-sudo apt-get upgrade -y
-echo "--- install build-essentials ------------------------------------------------------"
-sudo apt-get install build-essentials -yes
-echo "--- add Docker key to apt ------------------------------------------------------"
-sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
-echo "--- update docker.list ------------------------------------------------------"
+echo ">>>>>>>>>> upgrading ... \n"
 
-if [ -e /etc/apt/sources.list.d/docker.list ]
+apt-get upgrade -y
+
+echo ">>>>>>>>>> install build-essentials ... \n"
+
+apt-get install build-essentials -y
+
+echo ">>>>>>>>>> add Docker repo key ... \n"
+
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+
+echo ">>>>>>>>>> update Docker packages list ... \n"
+
+if [ -f /etc/apt/sources.list.d/docker.list ]
 then
     if grep "deb https://apt.dockerproject.org/repo ubuntu-trusty main" /etc/apt/sources.list.d/docker.list
     then
@@ -29,27 +35,25 @@ else
     sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list'
 fi
 
-sudo apt-get update
-sudo apt-get purge lxc-docker
-sudo apt-cache policy docker-engine
-sudo apt-get update
+apt-get update
+apt-get purge lxc-docker
+apt-cache policy docker-engine
+apt-get update
 
 #### MAIN INSTALL and Launch #####
-echo "installing aufs storage driver"
-echo "=============================="
-sudo apt-get install --yes linux-image-extra-$(uname -r)
-sudo apt-get update
-sudo apt-get install --yes docker-engine
-echo "Starting docker service...."
-echo "==========================="
-sudo service docker start
-echo "Verifying installation ....."
-echo "============================"
-sudo docker run hello-world
-echo "Creating docker group and adding user..."
-echo "========================================"
+echo ">>>>>>>>>> installing aufs storage driver \n"
+
+apt-get install -y linux-image-extra-$(uname -r)
+apt-get update
+
+echo ">>>>>>>>>> install Docker engine ... \n"
+
+apt-get install -y docker-engine
+
+echo ">>>>>>>>>> creating docker group and adding user... \n"
+
 sudo usermod -aG docker ubuntu
-su -c 'newgrp docker; while true; do sleep 1; done' user
-echo "Verifying group addition"
-echo "========================"
+
+echo ">>>>>>>>>> testing docker ... \n"
+
 docker run hello-world
