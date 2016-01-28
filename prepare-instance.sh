@@ -8,6 +8,9 @@ fi
 echo ">>>>>> changing hostname ... "
 
 hostnamectl set-hostname "$1"
+
+echo "127.0.0.1 $1" >> /etc/hosts
+
 service     hostname restart
 service     networking restart
 
