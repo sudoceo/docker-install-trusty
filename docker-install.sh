@@ -25,7 +25,7 @@ then
         sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list'
     fi
 else
-    sudo mkdir -p /etc/apt/sources.list.d/docker.list
+    #sudo mkdir -p /etc/apt/sources.list.d/docker.list
     sudo sh -c 'echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list'
 fi
 
